@@ -7,6 +7,7 @@ import com.qa.hubspot.base.BasePage;
 
 public class LoginPage extends BasePage{
 
+
 	WebDriver driver;
 	//https://app.hubspot.com/login
 	/**
@@ -43,12 +44,12 @@ public class LoginPage extends BasePage{
 		return signuptxt;
 	}
 	
-	public HomePage dologin(String un, String pwd)
+	public HomePage dologin(String un, String pwd) throws InterruptedException
 	{
 		driver.findElement(email).sendKeys(un);
 		driver.findElement(password).sendKeys(pwd);
 		driver.findElement(loginbtn).click();
-		
+		Thread.sleep(20000);
 		driver.findElement(homelink).click();
 		
 		return new HomePage(driver);

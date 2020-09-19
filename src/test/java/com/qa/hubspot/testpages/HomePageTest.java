@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.qa.hubspot.base.BasePage;
 import com.qa.hubspot.pages.HomePage;
@@ -19,6 +20,7 @@ public class HomePageTest {
 		Properties prop;
 		WebDriver driver;
 		HomePage homepage;
+		SoftAssert sfassert;
 		
 		//BM-T-AM
 		@BeforeTest
@@ -33,6 +35,8 @@ public class HomePageTest {
 			//driver.manage().deleteAllCookies();
 			String url=prop.getProperty("url");
 			driver.get(url);
+			sfassert=new SoftAssert();
+			
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -49,12 +53,12 @@ public class HomePageTest {
 		public void VerifyLoginPageTitle()
 		{
 			 String title=homepage.GetHomeTitle();
-			// Assert.assertEquals(title, "HubSpot Login");
+			 Assert.assertEquals(title, "Reports dashboard");
 			 System.out.println(title);
 		}
 		
 		
-		@Test(priority=3)
+		@Test(priority=2)
 		public void Verifyheaderpresent()
 		{
 			Assert.assertTrue(homepage.IsHeaderPresent());
@@ -65,7 +69,7 @@ public class HomePageTest {
 		@AfterTest
 		public void teardown()
 		{
-			//driver.quit();
+			driver.quit();
 		}
 	}
 

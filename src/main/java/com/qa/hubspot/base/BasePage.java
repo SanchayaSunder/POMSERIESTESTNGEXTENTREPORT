@@ -1,10 +1,14 @@
 package com.qa.hubspot.base;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -17,32 +21,34 @@ public class BasePage {
 	WebDriver driver;
 	Properties prop;
 	
-	/*
-	 * 
-	 * 
-	 */
-	public WebDriver init_driver(String browserName) 
-	{
-		if(browserName.equals("Chrome"))
-		{
-			WebDriverManager.chromedriver().setup();
-			driver=new ChromeDriver();
-		}
-		else if(browserName.equals("FireFox"))
-		{
-			WebDriverManager.firefoxdriver().setup();
-			driver=new FirefoxDriver();
-		}
-		else 
-		{
-			WebDriverManager.edgedriver().setup();
-			driver=new EdgeDriver();
-		}
-		driver.manage().window().fullscreen();
-		//driver.manage().deleteAllCookies();
-		
+	public WebDriver getDriver() {
 		return driver;
-		
+	}
+
+	public WebDriver init_driver(String browserName) {
+
+		if (browserName.equals("Chrome")) {
+			WebDriverManager.chromedriver().setup();
+			//driver = new ChromeDriver();
+			driver = new ChromeDriver();
+			//tldriver.set(new ChromeDriver());
+		} else if (browserName.equals("firefox")) {
+			WebDriverManager.firefoxdriver().setup();
+			driver = new FirefoxDriver();
+			//driver = new FirefoxDriver();
+		} else if (browserName.equals("safari")) {
+
+		} else {
+			System.out.println(browserName + " Browser value is wrong, please pass the correct browser name....");
+		}
+
+		driver.manage().window().fullscreen();
+		driver.manage().deleteAllCookies();
+		//getDriver().manage().window().fullscreen();
+		//getDriver().manage().deleteAllCookies();
+
+		return driver;
+	//	return getDriver();
 	}
 	/*
 	 * this method is used to read the properties from config.properties file.
@@ -65,4 +71,5 @@ public class BasePage {
 		
 		return prop;
 	}
+	
 }

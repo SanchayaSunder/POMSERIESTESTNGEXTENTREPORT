@@ -9,7 +9,7 @@ public class HomePage extends BasePage{
 
 	WebDriver driver;
 	By homelink=By.xpath("//div[@class='nav-links']//a[@id='nav-primary-home']");
-	By header=By.xpath("//span//h1[@class='dashboard-selector__title']']");
+	By header=By.xpath("//span//h1[@class='dashboard-selector__title']");
 	By createdashboard=By.xpath("//button[@class='uiButton private-button private-button--secondary private-button--default private-button--non-link']");
 	public HomePage(WebDriver driver)
 	{

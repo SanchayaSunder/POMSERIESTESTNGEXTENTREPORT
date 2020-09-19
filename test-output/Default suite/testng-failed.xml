@@ -11,6 +11,15 @@
           <include name="teardown"/>
         </methods>
       </class> <!-- com.qa.hubspot.testpages.HomePageTest$LoginPageTest -->
+      <class name="com.qa.hubspot.testpages.LoginPageTest">
+        <methods>
+          <include name="LoginTest"/>
+          <include name="setup"/>
+          <include name="VerifyLoginPageTitle"/>
+          <include name="VerifySignUpLink"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- com.qa.hubspot.testpages.LoginPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

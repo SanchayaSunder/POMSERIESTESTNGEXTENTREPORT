@@ -1,25 +1,22 @@
 package com.qa.hubspot.testpages;
 
+import org.testng.annotations.Test;
 import java.util.Properties;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-
 import com.qa.hubspot.base.BasePage;
+import com.qa.hubspot.pages.HomePage;
 import com.qa.hubspot.pages.LoginPage;
-import com.qa.hubspot.util.Constants;
 
 public class LoginPageTest {
 	BasePage basepage;
 	Properties prop;
-	WebDriver driver;
+	public WebDriver driver;
 	LoginPage loginpage;
+	HomePage homepage;	
 	//BM-T-AM
 	@BeforeTest
 	public void setup()
@@ -41,11 +38,17 @@ public class LoginPageTest {
 		}
 		loginpage=new LoginPage(driver);
 	}
+
+	@BeforeClass
+	public void bfclass()
+	{
+		
+	}
 	@Test(priority=1)
 	public void VerifyLoginPageTitle()
 	{
 		 String title=loginpage.getPageTitle();
-		 Assert.assertEquals(title, Constants.LoginTitle);
+		 Assert.assertEquals(title,"hfhgf");
 		 System.out.println(title);
 	}
 	
@@ -59,15 +62,24 @@ public class LoginPageTest {
 	@Test(priority=3)
 	public void LoginTest()
 	{
-		String username=prop.getProperty("username");
-		String password=prop.getProperty("pwd");
-		loginpage.dologin(username, password);
+		String uname=prop.getProperty("username");
+		String pword=prop.getProperty("pwd");
 		
+		try {
+			homepage=loginpage.dologin(uname, pword);
+		} catch (InterruptedException e) {
+			System.out.println("some exception with the login");
+		}
+			
 	}
 	
 	@AfterTest
 	public void teardown()
 	{
-		//driver.quit();
+		
+		driver.quit();
 	}
+	
+	
+
 }
