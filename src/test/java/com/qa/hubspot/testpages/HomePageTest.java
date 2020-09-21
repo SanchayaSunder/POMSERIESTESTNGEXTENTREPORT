@@ -15,10 +15,10 @@ import com.qa.hubspot.pages.LoginPage;
 
 public class HomePageTest {
 
-	public class LoginPageTest {
+	
 		BasePage basepage;
 		Properties prop;
-		WebDriver driver;
+		public WebDriver driver;
 		HomePage homepage;
 		SoftAssert sfassert;
 		
@@ -73,4 +73,4 @@ public class HomePageTest {
 		}
 	}
 
-}
+
